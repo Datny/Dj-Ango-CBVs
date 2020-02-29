@@ -23,10 +23,12 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home, name='home'),
+    #login
     path('signup/', views.SignUp.as_view(), name='signup'),
-    path('login/',auth_view.LoginView.as_view(), name='login'),
-    path('logout', auth_view.LogoutView.as_view(),name='logout')
-
+    path('login/', auth_view.LoginView.as_view(), name='login'),
+    path('logout', auth_view.LogoutView.as_view(),name='logout'),
+    #crud
+    path('halloffame/create',views.CreateHall.as_view(), name='create_hall'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
