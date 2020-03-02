@@ -1,0 +1,17 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <div class="container">
+    <h2>Are you sure u want to delete this Hall of fame?</h2>
+        <form method="post">
+            <div class="float-left pr-2">
+            <h4>{{ hall.title }}:</h4><br/>
+                 {{form.as_p}}
+                </div>
+            {% csrf_token %}
+            <input class="btn btn-primary" type="submit" value="Delete ">
+        </form>
+        Go back:
+        <a href="{% url 'detail_hall' hall.id %}">{{ hall.title }}</a>
+    </div>
+{% endblock %}

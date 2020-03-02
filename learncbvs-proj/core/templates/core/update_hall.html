@@ -2,12 +2,13 @@
 
 {% block content %}
     <div class="container">
-    <h2>Create Hall</h2>
+    <h2>Edit Hall</h2>
         <form method="post">
             {% csrf_token %}
             {{form.as_p}}
-            <input class="btn btn-primary" type="submit" value="Create ">
+            <input class="btn btn-primary" type="submit" value="Save ">
         </form>
+        <a class="btn btn-danger" href="{% url 'delete_hall' hall.id %}">Delete hall</a>
     </div>
 
 {% endblock %}
