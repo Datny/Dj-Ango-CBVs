@@ -1,14 +1,27 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
-from . models import Hall
-from django.shortcuts import get_object_or_404
+from . models import Hall, Video
+from . forms import VideoForm, SearchForm
 
 
 
+def add_video(request, pk):
+    form = VideoForm()
+    search_form = SearchForm()
+    if request.method == "POST":
+        filled_form = VideoForm(request.POST)
+        if filled_form.is_valid():
+            video = Video()
+            video.title = filled_form.cleaned_data['title']
+            video.url = filled_form.cleaned_data['url']
+            video.youtube_id = filled_form.cleaned_data['youtube_id']
+            video.hall = Hall.objects.get(pk=pk)
+            video.save()
 
+    return render(request, 'core/add_video.html', {"form": form, 'search_form': search_form})
 
 
 

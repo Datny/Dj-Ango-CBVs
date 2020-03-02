@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'widget_tweaks',  #TODO: change to crisp forms
 ]
 
 MIDDLEWARE = [
