@@ -9,8 +9,8 @@ from django.http import Http404, JsonResponse
 import urllib
 from django.forms.utils import ErrorList
 import requests as pyt_request
+from .ignored import YOUTUBE_API_KEY
 
-YOUTUBE_API_KEY = 'AIzaSyCG8wa8gCJFi1tnMCn9rLT6pBJO7VUX1BA'
 
 def video_search(request):
     search_form = SearchForm(request.GET)
