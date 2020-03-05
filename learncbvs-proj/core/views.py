@@ -53,7 +53,8 @@ def home(request):
     return render(request,"core/home.html")
 
 def dashboard(request):
-    return render(request,"core/dashboard.html")
+    halls = Hall.objects.filter(user= request.user)
+    return render(request, "core/dashboard.html", {'hallz': halls})
 
 class DetailHall(generic.DetailView):
     model = Hall
@@ -80,6 +81,19 @@ class DeleteHall(generic.DeleteView):
        else:
           return redirect('login')
 
+class DeleteVideo(generic.DeleteView):
+    model = Video
+    success_url = reverse_lazy("dashboard")
+    template_name = 'core/delete_video.html'
+
+
+    # def delete(self, request, *args, **kwargs):
+    #    self.object = self.get_object()
+    #    if self.object.user == request.user:
+    #       self.object.delete()
+    #       return redirect(self.get_success_url())
+    #    else:
+    #       return redirect('login')
 
 class CreateHall(generic.CreateView):
     model = Hall
