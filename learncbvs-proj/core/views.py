@@ -15,9 +15,10 @@ from .ignored import YOUTUBE_API_KEY
 def video_search(request):
     search_form = SearchForm(request.GET)
     if search_form.is_valid():
-        search_data = search_form.cleaned_data['search_term']
-        return JsonResponse({"jello": [search_data]})
-    return JsonResponse({'jello': 'Not working'})
+        encoded_search_term = urllib.parse.quote(search_form.cleaned_data['search_term'])
+        response = pyt_request.get(f'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q={encoded_search_term}&key={YOUTUBE_API_KEY}')
+        return JsonResponse(response.json())
+    return JsonResponse({'error': 'Cant validate incoming data'})
 
 def add_video(request, pk):
     form = VideoForm()

@@ -38,7 +38,12 @@
                             },
                             dataType: 'json',
                             success: function (data) {
-                                $('#search_results').text(data['jello']);
+                                var results =  '';
+                                $('#search_results').text('');
+                                data['items'].forEach(function (video) {
+                                    results += video['snippet']['title']
+                                });
+                                $('#search_results').append(results);
                             }
                         });
 
