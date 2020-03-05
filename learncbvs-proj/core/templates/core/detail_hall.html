@@ -17,7 +17,7 @@
           <div class="card-body">
             <p class="card-text">{{ video.title }}</p>
                {% if user.id == hall.user.id %}
-                <a href="{% url 'delete_video' hall.id %}" class="btn btn-danger">Delete</a>
+                <a href="{% url 'delete_video' video.id %}" class="btn btn-danger">Delete</a>
               {% endif %}
           </div>
         </div>
